@@ -151,7 +151,7 @@ export class NavBar extends Component {
             // Sections are overflowing
             // Initial width is harcoded to the width the more menu dropdown will take
             let width = 46;
-            for (const section of sections) {
+            /*for (const section of sections) {
                 if (sectionsAvailableWidth < width + section.offsetWidth) {
                     // Last sections are overflowing
                     const overflowingSections = sections.slice(sections.indexOf(section));
@@ -170,7 +170,7 @@ export class NavBar extends Component {
                     break;
                 }
                 width += section.offsetWidth;
-            }
+            }*/
         }
 
         // ------- Final rendering -------

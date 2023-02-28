@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record id="action_inv_report" model="ir.actions.act_window">
+            <field name="name">Inventory Details</field>
+            <field name="res_model">inv.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_inv_report" name="Inventory Report" action="action_inv_report" parent="stock.menu_warehouse_report" sequence="6" groups="stock.group_stock_manager"/>
+</odoo>
