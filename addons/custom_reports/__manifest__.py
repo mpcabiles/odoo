@@ -8,6 +8,8 @@
     Custom reports for Ant POS
     """,
     'data': [
+        'report/inv_report.xml',
+        'report/inv_report_action.xml',
         'security/ir.model.access.csv',
         'views/custom_report_views.xml',
         'wizard/inv_report_wizard.xml'

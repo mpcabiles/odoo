@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <record id="inv_report_wizard" model="ir.ui.view">
-            <field name="name">inv.report.wizard.form</field>
+        <record id="inv_report_wizard_view" model="ir.ui.view">
+            <field name="name">inv.report.wizard.view</field>
             <field name="model">inv.report.wizard</field>
             <field name="arch" type="xml">
                 <form string="Sales Details">
@@ -10,7 +10,7 @@
                         <field name="inv_end_date" />
                     </group>
                     <footer>
-                        <!--<button name="generate_report" string="Print" type="object" class="btn-primary" data-hotkey="q"/>-->
+                        <button name="get_inv_report" string="Print" type="object" class="btn-primary"/>
                         <button string="Cancel" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
