@@ -4,7 +4,7 @@
             <field name="name">inv.report.wizard.view</field>
             <field name="model">inv.report.wizard</field>
             <field name="arch" type="xml">
-                <form string="Sales Details">
+                <form string="Inventory Report">
                     <group colspan="2" col="2">
                         <field name="inv_start_date" />
                         <field name="inv_end_date" />

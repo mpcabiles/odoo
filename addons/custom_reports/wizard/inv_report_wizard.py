@@ -1,5 +1,5 @@
-from odoo import api, fields, models
-from datetime import datetime, time, timedelta
+from odoo import fields, models
+from datetime import datetime, time
 
 class InvReportWizard(models.TransientModel):
     _name = 'inv.report.wizard'

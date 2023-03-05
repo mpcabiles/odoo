@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_pat_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <table class="table table-sm">
+                    <thead><tr>
+                        <th class="text-center">Member Name</th>
+                        <th class="text-center">Total Sales</th>
+                    </tr></thead>
+                    <tbody><tr t-foreach="details" t-as="r">
+                        <td class="text-center"><t t-esc="r.get('name')"/></td>
+                        <td class="text-center"><t t-esc="r.get('total')"/></td>
+                    </tr></tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>

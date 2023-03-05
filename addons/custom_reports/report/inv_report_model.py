@@ -1,6 +1,6 @@
 from odoo import api, models
 from odoo.exceptions import UserError
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class InvReport(models.AbstractModel):
     _name = 'report.custom_reports.report_inv_report'
@@ -38,12 +38,12 @@ class InvReport(models.AbstractModel):
         return qty_in + qty_pos - qty_out - qty_neg
 
     def get_quantities(self, date_beg, date_end, type, prod_id):
-        move_lines = self.env['stock.move.line'].search([
-            ('product_id', '=', prod_id),
-            ('date', '>=', date_beg),
-            ('date', '<=', date_end)
-        ])
         if type == 'in':
+            move_lines = self.env['stock.move.line'].search([
+                ('product_id', '=', prod_id),
+                ('date', '>=', date_beg),
+                ('date', '<=', date_end)
+            ])
             lines = move_lines.filtered(
                 lambda x:
                 x.is_inventory == False and
@@ -52,6 +52,11 @@ class InvReport(models.AbstractModel):
             qty = sum(lines.mapped('qty_done'))
             return qty
         elif type == 'out':
+            move_lines = self.env['stock.move.line'].search([
+                ('product_id', '=', prod_id),
+                ('date', '>=', date_beg),
+                ('date', '<=', date_end)
+            ])
             lines = move_lines.filtered(
                 lambda x:
                 x.is_inventory == False and
@@ -60,6 +65,13 @@ class InvReport(models.AbstractModel):
             qty = sum(lines.mapped('qty_done'))
             return qty
         elif type == 'negative':
+            date_beg = date_beg + timedelta(days=7)
+            date_end = date_end + timedelta(days=7)
+            move_lines = self.env['stock.move.line'].search([
+                ('product_id', '=', prod_id),
+                ('date', '>=', date_beg),
+                ('date', '<=', date_end)
+            ])
             lines = move_lines.filtered(
                 lambda x:
                 x.is_inventory == True and
@@ -68,6 +80,13 @@ class InvReport(models.AbstractModel):
             qty = sum(lines.mapped('qty_done'))
             return qty
         elif type == 'positive':
+            date_beg = date_beg + timedelta(days=7)
+            date_end = date_end + timedelta(days=7)
+            move_lines = self.env['stock.move.line'].search([
+                ('product_id', '=', prod_id),
+                ('date', '>=', date_beg),
+                ('date', '<=', date_end)
+            ])
             lines = move_lines.filtered(
                 lambda x:
                 x.is_inventory == True and
@@ -86,13 +105,15 @@ class InvReport(models.AbstractModel):
 
         for product in products:
             beg_qty = self.get_quantities_all(beg_date, product.id)
+            beg_qty = '{:,.0f}'.format(beg_qty)
             end_qty = self.get_quantities_all(end_date, product.id)
+            end_qty = '{:,.0f}'.format(end_qty)
             in_qty = self.get_quantities(beg_date, end_date, 'in', product.id)
             in_qty = '{:,.0f}'.format(in_qty)
             out_qty = self.get_quantities(beg_date, end_date, 'out', product.id)
             out_qty = '{:,.0f}'.format(out_qty)
             neg_qty = self.get_quantities(beg_date, end_date, 'negative', product.id)
-            pos_qty = self.get_quantities(beg_date, end_date, 'postive', product.id)
+            pos_qty = self.get_quantities(beg_date, end_date, 'positive', product.id)
             adj_qty = '{:,.0f}'.format(pos_qty - neg_qty)
 
             prod_details.append({

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="pat_report_wizard_view" model="ir.ui.view">
+            <field name="name">pat.report.wizard.view</field>
+            <field name="model">pat.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Patronage Report">
+                    <group colspan="2" col="2">
+                        <field name="start_date" />
+                        <field name="end_date" />
+                    </group>
+                    <!--<group colspan="2" col="2">
+                        <field name="report_type" widget="radio"/>
+                    </group>-->
+                    <footer>
+                        <button name="get_pat_report" string="Print" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+</odoo>

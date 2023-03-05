@@ -10,9 +10,12 @@
     'data': [
         'report/inv_report.xml',
         'report/inv_report_action.xml',
+        'report/pat_report.xml',
+        'report/pat_report_action.xml',
         'security/ir.model.access.csv',
         'views/custom_report_views.xml',
-        'wizard/inv_report_wizard.xml'
+        'wizard/inv_report_wizard.xml',
+        'wizard/pat_report_wizard.xml'
     ],
     'license': 'LGPL-3',
     'installable': True,
